@@ -1,5 +1,3 @@
 # GithubActions-Docker
 
-Update Docker on the Github Actions VM
-
-Just testing.
+Simple example of extending the Docker CLI and using GitHub Actions to build/test.

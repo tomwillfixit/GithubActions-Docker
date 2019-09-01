@@ -19,4 +19,9 @@ jobs:
     - name: Test Plugin 
       run: |
         docker help
-        docker changelog 
+        docker changelog |tee -a changelog.log 
+
+    - uses: actions/upload-artifact@master
+      with:
+        name: "Docker Engine Changelog"
+        path:  ./changelog.log 

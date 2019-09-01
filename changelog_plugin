@@ -2,7 +2,7 @@
 
 docker_cli_plugin_metadata() {
 
-        docker_version=$(docker version --format “{{.Client.Version}}”)
+        docker_version=$(docker version --format {{.Client.Version}})
         local version=0.1
 	local vendor="tomwillfixit"
 	local url="https://tomwillfixit.com"

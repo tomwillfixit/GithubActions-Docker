@@ -16,8 +16,7 @@ jobs:
     - name: Setup Plugin
       run: ./setup_plugin
     
-    - name: Run a multi-line script
+    - name: Test Plugin 
       run: |
-        docker info
         docker help
-        docker compose help
+        docker changelog 

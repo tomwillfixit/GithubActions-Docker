@@ -1,10 +1,9 @@
 #!/bin/bash
 
-
 mkdir -p ~/.docker/cli-plugins
 
-curl https://gist.githubusercontent.com/thaJeztah/b7950186212a49e91a806689e66b317d/raw/36d4c5854523502deed5b56842b0d34cd6ec0f70/docker-compose-plugin.sh > ~/.docker/cli-plugins/docker-compose
+cp ./changelog_plugin ~/.docker/cli-plugins/docker-changelog
 
-chmod +x ~/.docker/cli-plugins/docker-compose
+chmod +x ~/.docker/cli-plugins/docker-changelog
 
 

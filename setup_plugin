@@ -2,8 +2,7 @@
 
 mkdir -p ~/.docker/cli-plugins
 
-cp ./changelog_plugin ~/.docker/cli-plugins/docker-changelog
+mv ./docker-changelog ~/.docker/cli-plugins/docker-changelog
 
 chmod +x ~/.docker/cli-plugins/docker-changelog
-
 

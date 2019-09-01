@@ -18,6 +18,5 @@ jobs:
     
     - name: Test Plugin 
       run: |
-        docker version --format {{.Client.Version}}
         docker help
         docker changelog 

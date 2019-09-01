@@ -10,10 +10,14 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     
-    - name: Run a one-line script
+    - name: Update Docker to latest CE version 
       run: ./update_docker
+
+    - name: Setup Plugin
+      run: ./setup_plugin
     
     - name: Run a multi-line script
       run: |
         docker info
-        docker ps
+        docker help
+        docker compose help

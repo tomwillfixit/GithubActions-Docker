@@ -17,7 +17,7 @@ case "$1" in
 		docker_cli_plugin_metadata
 		;;
 	*)
-		exec "curl -s https://raw.githubusercontent.com/docker/docker-ce/v${docker_version}/CHANGELOG.md"
+		exec "curl -s https://raw.githubusercontent.com/docker/docker-ce/v19.03.1/CHANGELOG.md"
 		;;
 esac
 

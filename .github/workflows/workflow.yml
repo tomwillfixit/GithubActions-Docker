@@ -1,0 +1,19 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-18.04
+    
+    steps:
+    - uses: actions/checkout@v1
+    
+    - name: Run a one-line script
+      run: update_docker
+    
+    - name: Run a multi-line script
+      run: |
+        docker info
+        docker ps

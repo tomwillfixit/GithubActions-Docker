@@ -18,8 +18,9 @@ jobs:
       
     - name: Install GOSS
       run: curl -fsSL https://goss.rocks/install | GOSS_VER=v0.3.6 GOSS_DST=~ sh
+      
     - name: Install apt-rdepends
-      run: apt install apt-rdepends -y
+      run: sudo apt install apt-rdepends -y
       
     #- name: Generate OS Test Report
     # run: cd ~ && for package in $(dpkg --get-selections|sort | awk '{print $1}'); do ./goss autoadd package ${package}; done

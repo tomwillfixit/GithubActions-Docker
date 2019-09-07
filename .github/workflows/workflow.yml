@@ -14,9 +14,17 @@ jobs:
     - uses: actions/checkout@v1
     
     - name: Query Metadata Service
-      #run: curl -s -H Metadata:true "http://169.254.169.254/metadata/instance?api-version=2017-08-01" | jq -r '.compute.vmSize'
       run: curl -s -H Metadata:true "http://169.254.169.254/metadata/instance?api-version=2019-02-01" | jq -r '.'
-     
+      
+    - name: Install GOSS
+      run: curl -fsSL https://goss.rocks/install | GOSS_VER=v0.3.6 GOSS_DST=~/bin sh
+      
+    - name: Generate OS Test Report
+      run: goss autoadd package
+      
+    - name: GOSS Validate
+      run: goss validate
+      
     - name: Update Docker to latest CE version 
       run: ./update_docker
 

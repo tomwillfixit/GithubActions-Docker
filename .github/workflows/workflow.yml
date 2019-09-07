@@ -13,7 +13,8 @@ jobs:
     steps:
     
     - uses: tomwillfixit/goss@master
-    - run: goss add command "ls"
+      with:
+        command: validate
     
     # Setup
     - uses: actions/checkout@v1

@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-18.04
     
     steps:
+    
+# Setup
     - uses: actions/checkout@v1
     
     - name: Query Metadata Service
@@ -29,20 +31,34 @@ jobs:
       run: ./update_docker
       
     - name: Run rdepends with GOSS
-      run: cd ~ && ./goss command "apt-rdepends docker"
+      run: cd ~ && ./goss add command "apt-rdepends docker" |tee -a docker.deps
 
     - name: Setup Plugin
       run: ./setup_plugin
-    
+
+# Test
+
     - name: Test Plugin 
       run: |
         docker help
         docker changelog |tee -a changelog.log 
+
+    - name: GOSS Validate
+      run: cd ~ && ./goss validate --format nagios |tee -a goss.log
+
+# Save Artifacts
 
     - uses: actions/upload-artifact@master
       with:
         name: "Docker Engine Changelog"
         path:  ./changelog.log 
         
-    - name: GOSS Validate
-      run: cd ~ && ./goss validate --format nagios
+    - uses: actions/upload-artifact@master
+      with:
+        name: "Docker Dependencies"
+        path:  ./docker.deps
+        
+    - uses: actions/upload-artifact@master
+      with:
+        name: "GOSS log"
+        path:  ./goss.log    

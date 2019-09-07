@@ -20,7 +20,7 @@ jobs:
       run: curl -fsSL https://goss.rocks/install | GOSS_VER=v0.3.6 GOSS_DST=~ sh
       
     - name: Generate OS Test Report
-      run: cd ~ && ./goss autoadd package
+      run: cd ~ && ./goss autoadd ssh
       
     - name: GOSS Validate
       run: cd ~ && ./goss validate

@@ -12,6 +12,8 @@ jobs:
     
     steps:
     
+    - uses: tomwillfixit/goss@master
+    
     # Setup
     - uses: actions/checkout@v1
     

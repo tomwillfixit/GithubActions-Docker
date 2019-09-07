@@ -12,7 +12,7 @@ jobs:
     
     steps:
     
-# Setup
+    # Setup
     - uses: actions/checkout@v1
     
     - name: Query Metadata Service
@@ -36,29 +36,29 @@ jobs:
     - name: Setup Plugin
       run: ./setup_plugin
 
-# Test
+    # Test
 
     - name: Test Plugin 
       run: |
         docker help
-        docker changelog |tee -a changelog.log 
+        docker changelog |tee -a ~/changelog.log 
 
     - name: GOSS Validate
       run: cd ~ && ./goss validate --format nagios |tee -a goss.log
 
-# Save Artifacts
+    # Save Artifacts
 
     - uses: actions/upload-artifact@master
       with:
         name: "Docker Engine Changelog"
-        path:  ./changelog.log 
+        path:  ~/changelog.log 
         
     - uses: actions/upload-artifact@master
       with:
         name: "Docker Dependencies"
-        path:  ./docker.deps
+        path:  ~/docker.deps
         
     - uses: actions/upload-artifact@master
       with:
         name: "GOSS log"
-        path:  ./goss.log    
+        path:  ~/goss.log    

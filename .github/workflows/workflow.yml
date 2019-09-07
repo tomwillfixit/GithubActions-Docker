@@ -12,6 +12,7 @@ jobs:
     
     steps:
     
+    #This doesn't work
     - uses: tomwillfixit/goss@master
       with:
         command: goss --version

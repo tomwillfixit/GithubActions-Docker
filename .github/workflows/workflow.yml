@@ -16,14 +16,11 @@ jobs:
     - name: Query Metadata Service
       run: curl -s -H Metadata:true "http://169.254.169.254/metadata/instance?api-version=2019-02-01" | jq -r '.'
       
-    - name: List Services
-      run: systemctl | grep running
-      
     - name: Install GOSS
       run: curl -fsSL https://goss.rocks/install | GOSS_VER=v0.3.6 GOSS_DST=~ sh
       
     - name: Generate OS Test Report
-      run: cd ~ && ./goss autoadd
+      run: cd ~ && for package in $(dpkg --get-selections|sort | awk '{print $1}'); do goss autoadd package ${package}; done
       
     - name: GOSS Validate
       run: cd ~ && ./goss validate --format nagios

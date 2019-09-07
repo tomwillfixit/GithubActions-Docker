@@ -18,15 +18,17 @@ jobs:
       
     - name: Install GOSS
       run: curl -fsSL https://goss.rocks/install | GOSS_VER=v0.3.6 GOSS_DST=~ sh
+    - name: Install apt-rdepends
+      run: apt install apt-rdepends -y
       
-    - name: Generate OS Test Report
-      run: cd ~ && for package in $(dpkg --get-selections|sort | awk '{print $1}'); do ./goss autoadd package ${package}; done
-      
-    - name: GOSS Validate
-      run: cd ~ && ./goss validate --format nagios
+    #- name: Generate OS Test Report
+    # run: cd ~ && for package in $(dpkg --get-selections|sort | awk '{print $1}'); do ./goss autoadd package ${package}; done
       
     - name: Update Docker to latest CE version 
       run: ./update_docker
+      
+    - name: Run rdepends with GOSS
+      run: cd ~ && ./goss command "apt-rdepends docker"
 
     - name: Setup Plugin
       run: ./setup_plugin
@@ -40,3 +42,6 @@ jobs:
       with:
         name: "Docker Engine Changelog"
         path:  ./changelog.log 
+        
+    - name: GOSS Validate
+      run: cd ~ && ./goss validate --format nagios

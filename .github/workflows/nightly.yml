@@ -1,0 +1,29 @@
+name: nightly
+
+on:
+  schedule:
+  - cron: "0 20 * * 1-7"
+
+jobs:
+  build:
+
+    runs-on: ubuntu-18.04
+    
+    steps:
+    - uses: actions/checkout@v1
+    
+    - name: Update Docker to latest CE version 
+      run: ./update_docker
+
+    - name: Setup Plugin
+      run: ./setup_plugin
+    
+    - name: Test Plugin 
+      run: |
+        docker help
+        docker changelog |tee -a changelog.log 
+
+    - uses: actions/upload-artifact@master
+      with:
+        name: "Docker Engine Changelog"
+        path:  ./changelog.log 

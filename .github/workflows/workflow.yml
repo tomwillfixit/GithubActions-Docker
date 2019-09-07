@@ -31,7 +31,7 @@ jobs:
       run: ./update_docker
       
     - name: Run rdepends with GOSS
-      run: cd ~ && ./goss add command "apt-rdepends docker" |tee -a docker.deps
+      run: cd ~ && ./goss add command "apt-rdepends docker" |tee -a /tmp/docker.deps
 
     - name: Setup Plugin
       run: ./setup_plugin
@@ -41,24 +41,24 @@ jobs:
     - name: Test Plugin 
       run: |
         docker help
-        docker changelog |tee -a ~/changelog.log 
+        docker changelog |tee -a /tmp/changelog.log 
 
     - name: GOSS Validate
-      run: cd ~ && ./goss validate --format nagios |tee -a goss.log
+      run: cd ~ && ./goss validate --format nagios |tee -a /tmp/goss.log
 
     # Save Artifacts
 
     - uses: actions/upload-artifact@master
       with:
         name: "Docker Engine Changelog"
-        path:  ~/changelog.log 
+        path:  /tmp/changelog.log 
         
     - uses: actions/upload-artifact@master
       with:
         name: "Docker Dependencies"
-        path:  ~/docker.deps
+        path:  /tmp/docker.deps
         
     - uses: actions/upload-artifact@master
       with:
         name: "GOSS log"
-        path:  ~/goss.log    
+        path:  /tmp/goss.log    

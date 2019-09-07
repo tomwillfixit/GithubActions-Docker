@@ -14,7 +14,7 @@ jobs:
     
     - uses: tomwillfixit/goss@master
       with:
-        goss_command:  goss add command "ls"
+        goss_command:  add command "ls"
     
     # Setup
     - uses: actions/checkout@v1

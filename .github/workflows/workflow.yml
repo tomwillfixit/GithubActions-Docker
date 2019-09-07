@@ -13,8 +13,7 @@ jobs:
     steps:
     
     - uses: tomwillfixit/goss@master
-      with:
-        goss_command:  add command "ls"
+      - run: goss add command "ls"
     
     # Setup
     - uses: actions/checkout@v1

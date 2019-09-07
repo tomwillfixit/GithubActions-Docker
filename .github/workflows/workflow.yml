@@ -20,10 +20,10 @@ jobs:
       run: curl -fsSL https://goss.rocks/install | GOSS_VER=v0.3.6 GOSS_DST=~ sh
       
     - name: Generate OS Test Report
-      run: cd ~ && ./goss autoadd ssh
+      run: cd ~ && ./goss autoadd
       
     - name: GOSS Validate
-      run: cd ~ && ./goss validate
+      run: cd ~ && ./goss validate --format nagios
       
     - name: Update Docker to latest CE version 
       run: ./update_docker

@@ -17,7 +17,7 @@ jobs:
       run: curl -s -H Metadata:true "http://169.254.169.254/metadata/instance?api-version=2019-02-01" | jq -r '.'
       
     - name: Install GOSS
-      run: curl -fsSL https://goss.rocks/install | GOSS_VER=v0.3.6 GOSS_DST=/usr/local/bin sh
+      run: curl -fsSL https://goss.rocks/install | GOSS_VER=v0.3.6 GOSS_DST=~ sh
       
     - name: Generate OS Test Report
       run: goss autoadd package

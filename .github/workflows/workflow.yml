@@ -14,7 +14,7 @@ jobs:
     
     - uses: tomwillfixit/goss@master
       with:
-        command: validate
+        command: goss --version
     
     # Setup
     - uses: actions/checkout@v1

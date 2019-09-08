@@ -20,6 +20,9 @@ jobs:
     # Setup
     - uses: actions/checkout@v1
     
+    - name: Systemd Blame Log
+      run: systemd-analyze blame |tee -a /tmp/systemd_blame.log
+    
     - name: Query Metadata Service
       run: curl -s -H Metadata:true "http://169.254.169.254/metadata/instance?api-version=2019-02-01" | jq -r '.' |tee -a /tmp/metadata.log
       
@@ -71,4 +74,11 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: "GOSS log"
-        path:  /tmp/goss.log    
+        path:  /tmp/goss.log 
+    
+    - uses: actions/upload-artifact@master
+      with:
+        name: "Systemd Blame log"
+        path:  /tmp/systemd_blame.log
+        
+        
